@@ -10,7 +10,9 @@ CREATE TABLE persons (
   email varchar(255) NOT NULL,
   gitUrl varchar(255),
   UNIQUE (id),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  INDEX (firstName, lastName),
+  INDEX (email)
 );
 
 CREATE TABLE jobTitles (
@@ -19,7 +21,10 @@ CREATE TABLE jobTitles (
   jobTitle varchar(255) NOT NULL DEFAULT 'Noob',
   UNIQUE (id),
   PRIMARY KEY (id),
-  FOREIGN KEY (personID) REFERENCES persons(id)
+  FOREIGN KEY (personID) REFERENCES persons(id),
+  INDEX (personId),
+  INDEX (jobTitle),
+  UNIQUE INDEX (personId, jobTitle)
 );
 
 CREATE TABLE domainNames (
@@ -30,5 +35,6 @@ CREATE TABLE domainNames (
   UNIQUE (id),
   PRIMARY KEY (id),
   FOREIGN KEY (personID) REFERENCES persons(id),
-  CONSTRAINT UC_fullDomain UNIQUE (rootDomain,topLevelDomain)
+  UNIQUE INDEX (rootDomain,topLevelDomain),
+  INDEX (personId)
 );

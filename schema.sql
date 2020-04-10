@@ -38,3 +38,14 @@ CREATE TABLE domainNames (
   UNIQUE INDEX (rootDomain,topLevelDomain),
   INDEX (personId)
 );
+
+-- Create some views for easy access to trainees and teachers:
+CREATE VIEW trainees AS
+SELECT firstName, lastName, phoneNumber, email, gitUrl
+FROM persons JOIN jobTitles ON persons.id = jobTitles.personId
+WHERE jobTitle = "Trainee";
+
+CREATE VIEW teachers AS
+SELECT firstName, lastName, phoneNumber, email, gitUrl
+FROM persons JOIN jobTitles ON persons.id = jobTitles.personId
+WHERE jobTitle = "Teacher";

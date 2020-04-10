@@ -3,7 +3,7 @@ DROP TABLE domainNames;
 DROP TABLE persons;
 
 CREATE TABLE persons (
-  id int NOT NULL,
+  id int NOT NULL AUTO_INCREMENT,
   firstName varchar(255) DEFAULT 'John',
   lastName varchar(255) DEFAULT 'Doe',
   phoneNumber varchar(20),
@@ -14,7 +14,7 @@ CREATE TABLE persons (
 );
 
 CREATE TABLE jobTitles (
-  id int NOT NULL,
+  id int NOT NULL AUTO_INCREMENT,
   personId int NOT NULL,
   jobTitle varchar(255) NOT NULL DEFAULT 'Noob',
   UNIQUE (id),
@@ -23,7 +23,7 @@ CREATE TABLE jobTitles (
 );
 
 CREATE TABLE domainNames (
-  id int NOT NULL,
+  id int NOT NULL AUTO_INCREMENT,
   personId int NOT NULL,
   rootDomain varchar(255) NOT NULL,
   topLevelDomain varchar(255) NOT NULL,
